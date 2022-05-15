@@ -6,6 +6,7 @@ const app = express();
 
 
 app.use(cors());
+// app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 // munia
@@ -34,6 +35,24 @@ async function run() {
             const query={_id: ObjectId(id)};
             const inventory = await serviceCollection.findOne(query);
             res.send(inventory);
+        });
+        // update inventory
+        app.put('/inventory/:id', async(req, res) =>{
+            console.log(req.body);
+            console.log(req.body.quantity);
+            const id = req.params.id;
+            
+            const updateQuantity = req.body;
+            const filter = {_id: ObjectId(id)};
+            const options = { upsert: true };            
+            const updatedDoc = {
+                $set: {
+                    quantity: updateQuantity.quantity
+                }
+            };
+            const result = await serviceCollection.updateOne(filter, updatedDoc, options);
+            res.send(result);
+
         });
 
         // POST
