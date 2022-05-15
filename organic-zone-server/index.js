@@ -55,6 +55,23 @@ async function run() {
 
         });
 
+        app.put('/user/:id', async(req, res) =>{
+            console.log(req.body);
+            console.log(req.body.quantity);
+            const id = req.params.id;
+            const updatedUser = req.body;
+            const filter = {_id: ObjectId(id)};
+            const options = { upsert: true };
+            const updatedDoc = {
+                $set: {
+                    quantity: updatedUser.quantity
+                }
+            };
+            const result = await serviceCollection.updateOne(filter, updatedDoc, options);
+            res.send(result);
+
+        });
+
         // POST
         // app.post('/inventory', async(req, res) =>{
         //     const newService = req.body;
