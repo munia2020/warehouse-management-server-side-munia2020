@@ -55,7 +55,7 @@ async function run() {
 
         });
 
-        app.put('/user/:id', async(req, res) =>{
+        app.put('/inventory/:id', async(req, res) =>{
             console.log(req.body);
             console.log(req.body.quantity);
             const id = req.params.id;
@@ -72,18 +72,19 @@ async function run() {
 
         });
 
+        // delete
+        app.delete('/inventory/:id', async(req, res) =>{
+            const id = req.params.id;
+            console.log(id)
+            const query = {_id: ObjectId(id)};
+            const result = await serviceCollection.deleteOne(query);
+            res.send(result);
+        })
+
         // POST
         // app.post('/inventory', async(req, res) =>{
         //     const newService = req.body;
         //     const result = await serviceCollection.insertOne(newService);
-        //     res.send(result);
-        // });
-
-        // DELETE
-        // app.delete('/inventory/:id', async(req, res) =>{
-        //     const id = req.params.id;
-        //     const query = {_id: ObjectId(id)};
-        //     const result = await serviceCollection.deleteOne(query);
         //     res.send(result);
         // });
 
