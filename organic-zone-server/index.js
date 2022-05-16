@@ -81,12 +81,12 @@ async function run() {
             res.send(result);
         })
 
-        // POST
-        // app.post('/inventory', async(req, res) =>{
-        //     const newService = req.body;
-        //     const result = await serviceCollection.insertOne(newService);
-        //     res.send(result);
-        // });
+        // post
+        app.post('/inventory', async(req, res) =>{
+            const newInventory = req.body;
+            const result = await serviceCollection.insertOne(newInventory);
+            res.send(result);
+        });
 
     }
     finally {
