@@ -88,6 +88,13 @@ async function run() {
             res.send(result);
         });
 
+        // app.get('/inventory/:email', async(req, res)=>{
+        //     const result = await serviceCollection.find({
+        //         email: req.params.email
+        //     }).toArray();
+        //     req.send(result);
+        // })
+
     }
     finally {
 
