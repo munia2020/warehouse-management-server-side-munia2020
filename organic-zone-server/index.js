@@ -9,8 +9,6 @@ app.use(cors());
 // app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
-// munia
-// XA5tunhCXLD2Wmx7
 
 
 
